@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.dankom.mechacraft.mixin.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "client.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
