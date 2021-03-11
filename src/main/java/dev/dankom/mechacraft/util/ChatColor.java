@@ -3,7 +3,7 @@ package dev.dankom.mechacraft.util;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
-public enum ColorCode {
+public enum ChatColor {
     DARK_RED('4', "\u00A74"),
     RED('c', "\u00A7c"),
     GOLD('6', "\u00A76"),
@@ -29,9 +29,17 @@ public enum ColorCode {
     private final char code;
     private final String color;
 
-    ColorCode(char code, String color) {
+    ChatColor(char code, String color) {
         this.code = code;
         this.color = color;
+    }
+
+    public String code() {
+        return "&" + code;
+    }
+
+    public String color() {
+        return color;
     }
 
     public String translateIn(String s) {
@@ -40,7 +48,7 @@ public enum ColorCode {
 
     public static String translate(String s) {
         String out = s;
-        for (ColorCode cc : ColorCode.values()) {
+        for (ChatColor cc : ChatColor.values()) {
             out = cc.translateIn(out);
         }
         return out;

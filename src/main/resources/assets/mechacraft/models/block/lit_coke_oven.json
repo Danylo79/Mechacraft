@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "mechacraft:blocks/coke_oven_top",
+    "front": "mechacraft:blocks/lit_coke_oven_front",
+    "side": "mechacraft:blocks/coke_oven_side"
+  }
+}

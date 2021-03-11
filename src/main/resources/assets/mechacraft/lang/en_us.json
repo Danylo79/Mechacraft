@@ -1,3 +1,14 @@
 {
+    "itemGroup.mechacraft_items": "Mechacraft Items",
+    "itemGroup.mechacraft_blocks": "Mechacraft Blocks",
 
+    "item.mechacraft.copper_wire": "Copper Wire",
+    "item.mechacraft.gold_wire": "Gold Wire",
+    "item.mechacraft.large_gear": "Large Gear",
+    "item.mechacraft.small_gear": "Small Gear",
+    "item.mechacraft.steel": "Steel",
+    "item.mechacraft.power_converter": "Power Converter",
+
+    "block.mechacraft.coke_oven": "Coke Oven",
+    "container.mechacraft.coke_oven": "Coke Oven"
 }
