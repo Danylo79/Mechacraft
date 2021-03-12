@@ -1,6 +1,5 @@
-package dev.dankom.mechacraft.blocks;
+package dev.dankom.mechacraft.blocks.blocks;
 
-import dev.dankom.mechacraft.Mechacraft;
 import dev.dankom.mechacraft.init.TileEntityInit;
 import dev.dankom.mechacraft.tileentity.CokeOvenTileEntity;
 import dev.dankom.mechacraft.util.MechacraftItemHandler;

@@ -1,9 +1,11 @@
 package dev.dankom.mechacraft.tileentity;
 
 import dev.dankom.mechacraft.Mechacraft;
-import dev.dankom.mechacraft.blocks.CokeOvenBlock;
+import dev.dankom.mechacraft.blocks.blocks.CokeOvenBlock;
 import dev.dankom.mechacraft.container.CokeOvenContainer;
+import dev.dankom.mechacraft.init.ItemInit;
 import dev.dankom.mechacraft.init.TileEntityInit;
+import dev.dankom.mechacraft.type.IEnergyPowered;
 import dev.dankom.mechacraft.util.MechacraftItemHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
@@ -43,7 +45,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class CokeOvenTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
+public class CokeOvenTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, IEnergyPowered {
 
     private ITextComponent customName;
     public int currentSmeltTime;
@@ -70,8 +72,8 @@ public class CokeOvenTileEntity extends TileEntity implements ITickableTileEntit
         boolean dirty = false;
 
         if (this.world != null && !this.world.isRemote) {
-            if (this.world.isBlockPowered(this.getPos())) {
-                if (this.getRecipe(this.inventory.getStackInSlot(0)) != null) {
+            if (isPowered(getPos())) {
+                if (this.getResult(this.inventory.getStackInSlot(0)) != null) {
                     if (this.currentSmeltTime != this.maxSmeltTime) {
                         this.world.setBlockState(this.getPos(),
                                 this.getBlockState().with(CokeOvenBlock.LIT, true));
@@ -80,12 +82,15 @@ public class CokeOvenTileEntity extends TileEntity implements ITickableTileEntit
                         this.world.setBlockState(this.getPos(),
                                 this.getBlockState().with(CokeOvenBlock.LIT, false));
                         this.currentSmeltTime = 0;
-                        ItemStack output = this.getRecipe(this.inventory.getStackInSlot(0));
+                        ItemStack output = this.getResult(this.inventory.getStackInSlot(0));
                         this.inventory.insertItem(1, output.copy(), false);
                         this.inventory.decrStackSize(0, 1);
                     }
                     dirty = true;
                 }
+            } else {
+                currentSmeltTime = 0;
+                dirty = false;
             }
         }
 
@@ -146,13 +151,13 @@ public class CokeOvenTileEntity extends TileEntity implements ITickableTileEntit
     }
 
     @Nullable
-    private ItemStack getRecipe(ItemStack stack) {
+    private ItemStack getResult(ItemStack stack) {
         if (stack == null) {
             return null;
         }
 
         if (stack.getItem().getName().equals(Items.COAL_BLOCK.getName())) {
-            return new ItemStack(Items.GUNPOWDER);
+            return new ItemStack(ItemInit.COKE.get());
         }
 
         return null;
